@@ -1,11 +1,20 @@
 #!/usr/bin/python3
+
+"""Define classes for a singly-linked list."""
+
 class Node:
     """Defines a node of a singly linked list."""
 
     def __init__(self, data, next_node=None):
         """
         Initializes the node with data and an optional next_node.
-        Raises TypeError for invalid input.
+        
+        Args:
+        data (int): The data to be stored in the node.
+        next_node (Node): The next node in the linked list (default is None).
+        
+        Raises:
+        TypeError: If data is not an integer.
         """
         self.data = data
         self.next_node = next_node
@@ -19,7 +28,12 @@ class Node:
     def data(self, value):
         """
         Setter method to set the data with type validation.
-        Raises TypeError for non-integer input.
+        
+        Args:
+        value (int): The data to be set.
+        
+        Raises:
+        TypeError: If value is not an integer.
         """
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
@@ -35,10 +49,15 @@ class Node:
     def next_node(self, value):
         """
         Setter method to set the next_node with type validation.
-        Raises TypeError for non-Node or non-None input.
+        
+        Args:
+        value (Node or None): The next node in the linked list or None.
+        
+        Raises:
+        TypeError: If value is not a Node object or None.
         """
         if not (value is None or isinstance(value, Node)):
-            raise TypeError("next_node must be a Node object")
+            raise TypeError("next_node must be a Node object or None")
         else:
             self.__next_node = value
 
@@ -51,7 +70,12 @@ class SinglyLinkedList:
         self.head = None
 
     def sorted_insert(self, value):
-        """Inserts a new Node into the correct sorted position in the list (increasing order)."""
+        """
+        Inserts a new Node into the correct sorted position in the list (increasing order).
+        
+        Args:
+        value (int): The value to be inserted into the linked list.
+        """
         new_node = Node(value)
         if not self.head or self.head.data >= value:
             new_node.next_node = self.head
