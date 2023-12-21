@@ -1,11 +1,20 @@
 #!/usr/bin/python3
+
+"""Define a class Square."""
+
 class Square:
     """Defines a square with size attribute."""
 
     def __init__(self, size=0):
         """
         Initializes the square with optional size.
-        Raises TypeError or ValueError for invalid input.
+        
+        Args:
+        size (float or int, optional): The size of the square (default is 0).
+        
+        Raises:
+        TypeError: If size is not a number.
+        ValueError: If size is negative.
         """
         self.size = size
 
@@ -18,7 +27,13 @@ class Square:
     def size(self, value):
         """
         Setter method to set the size with type and value validation.
-        Raises TypeError or ValueError for invalid input.
+        
+        Args:
+        value (float or int): The size to be set.
+        
+        Raises:
+        TypeError: If value is not a number.
+        ValueError: If value is negative.
         """
         if not isinstance(value, (float, int)):
             raise TypeError("size must be a number")
