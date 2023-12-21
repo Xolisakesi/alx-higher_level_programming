@@ -1,11 +1,21 @@
 #!/usr/bin/python3
+
+"""Define a class Square."""
+
 class Square:
     """Defines a square with size and position attributes."""
 
     def __init__(self, size=0, position=(0, 0)):
         """
         Initializes the square with optional size and position.
-        Raises TypeError or ValueError for invalid input.
+        
+        Args:
+        size (int, optional): The size of the square (default is 0).
+        position (tuple, optional): The position of the square (default is (0, 0)).
+        
+        Raises:
+        TypeError: If size is not an integer or position is not a tuple of 2 integers.
+        ValueError: If size is negative.
         """
         self.size = size
         self.position = position
@@ -19,7 +29,13 @@ class Square:
     def size(self, value):
         """
         Setter method to set the size with type and value validation.
-        Raises TypeError or ValueError for invalid input.
+        
+        Args:
+        value (int): The size to be set.
+        
+        Raises:
+        TypeError: If value is not an integer.
+        ValueError: If value is negative.
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
@@ -37,7 +53,13 @@ class Square:
     def position(self, value):
         """
         Setter method to set the position with type and value validation.
-        Raises TypeError or ValueError for invalid input.
+        
+        Args:
+        value (tuple): The position to be set.
+        
+        Raises:
+        TypeError: If value is not a tuple of 2 integers.
+        ValueError: If any element in the tuple is negative.
         """
         if (not isinstance(value, tuple) or len(value) != 2 or
                 not all(isinstance(i, int) for i in value) or
