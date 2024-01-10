@@ -1,21 +1,34 @@
 #!/usr/bin/python3
-"""Module that defines a Square."""
+"""
+Defines a class MyInt that inherits from int.
+"""
 
 
-class Square(Rectangle):
-    """Class that represents a square."""
+class MyInt(int):
+    """
+    Represents a rebellious integer.
+    """
 
+    def __eq__(self, other):
+        """
+        Inverts the equality operator.
 
-    def __init__(self, size):
-        """Instantiation method with size."""
-        super().__init__(size, size)
-        self.integer_validator("size", size)
-        self.__size = size
+        Parameters:
+            - other: The other operand in the equality comparison.
 
-    def area(self):
-        """Calculates the area of the square."""
-        return self.__size ** 2
+        Returns:
+            bool: The result of the inverted equality check.
+        """
+        return super().__ne__(other)
 
-    def __str__(self):
-        """Returns a string representation of the square."""
-        return f"[Square] {self.__size}/{self.__size}"
+    def __ne__(self, other):
+        """
+        Inverts the inequality operator.
+
+        Parameters:
+            - other: The other operand in the inequality comparison.
+
+        Returns:
+            bool: The result of the inverted inequality check.
+        """
+        return super().__eq__(other)
