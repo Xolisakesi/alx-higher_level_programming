@@ -18,12 +18,17 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Querying the State object with the specified name
-    instance = session.query(State).filter(State.name == (sys.argv[4],))
+    # Creating a new State object with the name passed as an argument
+    new_state = State(name='Louisiana')
 
-    try:
-        # Printing the ID of the State object if found
-        print(instance[0].id)
-    except IndexError:
-        # Handling the case when no State object is found
-        print("Not found")
+    # Adding the new State object to the session
+    session.add(new_state)
+
+    # Querying the database to retrieve the newly added State object
+    new_instance = session.query(State).filter_by(name='Louisiana').first()
+
+    # Printing the ID of the newly added State object
+    print(new_instance.id)
+
+    # Committing the transaction
+    session.commit()
