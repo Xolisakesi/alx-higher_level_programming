@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-""" prints the first State object from the database hbtn_0e_6_usa
-"""
+""" prints the State object with the name passed
+as argument from the database """
 import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -18,6 +18,12 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Querying and printing the first State object whose name contains 'a'
-    for instance in session.query(State).filter(State.name.like('%a%')):
-        print(instance.id, instance.name, sep=": ")
+    # Querying the State object with the specified name
+    instance = session.query(State).filter(State.name == (sys.argv[4],))
+
+    try:
+        # Printing the ID of the State object if found
+        print(instance[0].id)
+    except IndexError:
+        # Handling the case when no State object is found
+        print("Not found")
